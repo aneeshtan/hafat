@@ -2049,8 +2049,8 @@ h3 {
   border: 0;
   border-radius: 0;
   background:
-    linear-gradient(90deg, rgba(7, 6, 4, 0.94) 0%, rgba(7, 6, 4, 0.76) 42%, rgba(7, 6, 4, 0.4) 100%),
-    linear-gradient(0deg, rgba(7, 6, 4, 0.72), transparent 48%),
+    linear-gradient(90deg, rgba(7, 6, 4, 0.82) 0%, rgba(7, 6, 4, 0.48) 43%, rgba(7, 6, 4, 0.18) 100%),
+    linear-gradient(0deg, rgba(7, 6, 4, 0.48), transparent 46%),
     var(--service-image) center / cover no-repeat;
   box-shadow: none;
   opacity: 0;
@@ -2061,8 +2061,8 @@ h3 {
 
 .service-visual::after {
   background:
-    radial-gradient(circle at 72% 30%, transparent 0%, rgba(7, 6, 4, 0.16) 50%, rgba(7, 6, 4, 0.55) 100%),
-    linear-gradient(180deg, rgba(7, 6, 4, 0.26), transparent 20%, rgba(7, 6, 4, 0.45));
+    radial-gradient(circle at 72% 30%, transparent 0%, rgba(7, 6, 4, 0.08) 52%, rgba(7, 6, 4, 0.32) 100%),
+    linear-gradient(180deg, rgba(7, 6, 4, 0.16), transparent 22%, rgba(7, 6, 4, 0.28));
 }
 
 .service-visual.is-active {
@@ -2194,7 +2194,7 @@ h3 {
   .service-slide-copy {
     width: 100%;
     align-self: end;
-    margin: 0 0 clamp(94px, 15vh, 132px);
+    margin: 0 0 clamp(118px, 17vh, 150px);
   }
 
   .service-slide-copy h3 {
@@ -2215,9 +2215,12 @@ h3 {
   }
 
   .services-controls {
-    inset-inline: -4px;
-    top: 50%;
-    transform: translateY(-50%);
+    inset-inline: 22px auto;
+    top: auto;
+    bottom: clamp(30px, 5dvh, 44px);
+    gap: 12px;
+    justify-content: flex-start;
+    transform: none;
   }
 }
 
