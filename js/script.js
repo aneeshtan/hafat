@@ -42,9 +42,35 @@ const detailImage = document.querySelector("[data-detail-image]");
 const clients = document.querySelector("#clients");
 const clientsHeading = document.querySelector("[data-clients-heading]");
 const clientsWords = document.querySelectorAll("[data-clients-word]");
+const whyHafatScroll = document.querySelector(".why-hafat-scroll");
 
 const syncHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 24);
+};
+
+const whyColors = [
+  [255, 106, 26],
+  [244, 180, 0],
+  [122, 122, 46],
+  [40, 32, 0]
+];
+
+const mixColor = (from, to, amount) => from.map((channel, index) => (
+  Math.round(channel + (to[index] - channel) * amount)
+));
+
+const syncWhyHafatColor = () => {
+  if (!whyHafatScroll) return;
+
+  const rect = whyHafatScroll.getBoundingClientRect();
+  const scrollable = Math.max(1, rect.height - window.innerHeight);
+  const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+  const scaled = progress * (whyColors.length - 1);
+  const index = Math.min(whyColors.length - 2, Math.floor(scaled));
+  const localProgress = scaled - index;
+  const [r, g, b] = mixColor(whyColors[index], whyColors[index + 1], localProgress);
+
+  whyHafatScroll.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 };
 
 const revealObserver = new IntersectionObserver(
@@ -579,25 +605,25 @@ const initFolio = () => {
 
   const items = [
     {
-      title: "Reduce manual processes.",
+      title: "Reduce manual processes",
       client: "Efficiency",
       image: "assets/images/why-hafat/reduce-manual-process.jpg",
       summary: "Streamlined workflows that improve speed, consistency, and execution.",
     },
     {
-      title: "Improve execution speed.",
+      title: "Improve execution speed",
       client: "Delivery",
       image: "assets/images/why-hafat/improve-execution-speed.png",
       summary: "Faster delivery systems that help teams move from planning to publishing with fewer delays.",
     },
     {
-      title: "Scale operations efficiently.",
+      title: "Scale operations efficiently",
       client: "Systems",
       image: "assets/images/why-hafat/scale-operations.png",
       summary: "Flexible systems built to support business growth, evolving demands, and multiple moving workflows.",
     },
     {
-      title: "Optimise with data.",
+      title: "Optimise with data",
       client: "Analytics",
       image: "assets/images/why-hafat/optimise-data.png",
       summary: "Performance insights and analytics that support better decisions and continuous improvement.",
@@ -1158,4 +1184,7 @@ if (contactForm) {
 }
 
 window.addEventListener("scroll", syncHeader, { passive: true });
+window.addEventListener("scroll", syncWhyHafatColor, { passive: true });
+window.addEventListener("resize", syncWhyHafatColor);
 syncHeader();
+syncWhyHafatColor();
