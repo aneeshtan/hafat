@@ -33,5 +33,5 @@
         ]);
         ?>
       </nav>
-      <a class="pill" href="#contact"><?php esc_html_e('Book a session', 'hafat'); ?></a>
+      <a class="pill" href="<?php echo esc_url(home_url('/#contact')); ?>"><?php esc_html_e('Book a session', 'hafat'); ?></a>
     </header>
